@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -53,14 +57,40 @@ public class CollectionWinners {
         }
     }
 
-    public void persist(Winner winner) {
-        winners.add(winner);
-    }
-
     public List<Winner> getWinners() {
         List<Winner> winnerSort = winners.stream().filter(w -> w.getInterval() > 0).collect(Collectors.toList());
         winnerSort.sort(Comparator.comparing(Winner::getInterval));
         return winnerSort;
+    }
+
+    public String getIntervalWinners() {
+        JsonObject json = new JsonObject();
+        JsonArray min = new JsonArray();
+        JsonArray max = new JsonArray();
+        //
+        Winner w = getWinners().get(0);
+        min.add(createJsonObject(w.getProducer(), w.getInterval(), w.getPreviousWin(), w.getFollowingWin()));
+        w = getWinners().get(1);
+        min.add(createJsonObject(w.getProducer(), w.getInterval(), w.getPreviousWin(), w.getFollowingWin()));
+        json.add("min", min);
+        //
+        int lastWin = getWinners().size() -1;
+        System.out.println("Last Win: " + lastWin);
+        w = getWinners().get(lastWin - 1);
+        max.add(createJsonObject(w.getProducer(), w.getInterval(), w.getPreviousWin(), w.getFollowingWin()));
+        w = getWinners().get(lastWin);
+        max.add(createJsonObject(w.getProducer(), w.getInterval(), w.getPreviousWin(), w.getFollowingWin()));
+        json.add("max", max);
+        return json.toString();
+    }
+
+    private JsonObject createJsonObject(String productor, int interval, int previousWin, int folowingWin) {
+        JsonObject json = new JsonObject();
+        json.add("productor", new JsonPrimitive(productor));
+        json.add("interval", new JsonPrimitive(interval));
+        json.add("previousWin", new JsonPrimitive(previousWin));
+        json.add("folowingWin", new JsonPrimitive(folowingWin));
+        return json;
     }
 
 }

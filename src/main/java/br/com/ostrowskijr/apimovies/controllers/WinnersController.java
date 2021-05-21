@@ -13,7 +13,7 @@ import br.com.ostrowskijr.apimovies.model.Winner;
 @RestController
 @RequestMapping("/winners")
 public class WinnersController {
-    
+
     private final CollectionWinners collectionWinners;
 
     @Autowired
@@ -21,8 +21,13 @@ public class WinnersController {
         this.collectionWinners = collectionWinners;
     }
 
-    @GetMapping()
+    @GetMapping("/list")
     public List<Winner> getWinners() {
         return collectionWinners.getWinners();
     }
- }
+
+    @GetMapping("")
+    public String getResultDesafio() {
+        return collectionWinners.getIntervalWinners();
+    }
+}
