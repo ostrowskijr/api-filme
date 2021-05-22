@@ -1,7 +1,6 @@
 package br.com.ostrowskijr.apimovies.controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +21,9 @@ public class MoviesController {
         this.movies = movies;
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Movie> listMovies() {
-        return movies.list().stream().filter((Movie m) -> m.getProducers().contains("Kevin"))
-                .collect(Collectors.toList());
+        return movies.getMovies();
     }
 
 }
