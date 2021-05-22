@@ -42,9 +42,7 @@ public class CollectionWinners {
                     if (!optional.isPresent()) {
                         List<Integer> dates = filterMovies.stream().filter(m -> m.getProducers().contains(producer))
                                 .map(Movie::getYear).collect(Collectors.toList());
-                        if (dates.size() > 1) {
-                            System.out.println(
-                                    producer + " - Years: " + dates.toString() + " Total Wins: " + dates.size());
+                        if (dates.size() > 1) {                            
                             try {
                                 int firstYear = 0;
                                 int lastYear = 0;
