@@ -9,6 +9,7 @@ categoria Pior Filme do Golden Raspberry Awards.
 
 ## Tecnologias Utilizas
 - [VScode](https://code.visualstudio.com/)
+- [Java](https://www.java.com/pt-BR/)
 - [Spring-Boot](https://spring.io/projects/spring-boot)
 - [Maven](https://maven.apache.org/)
 
@@ -16,7 +17,7 @@ categoria Pior Filme do Golden Raspberry Awards.
 - Para realizar download e execuão do projeto em sua máquina favor seguir os seguintes procedimentos.
 ```bash
     # No console de seu computador navegar até a pasta onde desejar fazer o download do projeto e executar o comando abaixo:
-    $ get clone https://github.com/ostrowskijr/api-movies.git
+    $ git clone https://github.com/ostrowskijr/api-movies.git
 
     # Após finalizar o clone do projeto acessar a pasta do projeto
     $ cd /api-movies
@@ -44,6 +45,7 @@ Será lançado o resultado do testes no terminal conforme exemplo abaixo:
 <div>
     <img src="src/main/resources/img/test.png">    
 </div>
+
 Ao final do teste será exibido o resultado do total de testes executados, conforme imagem abaixo:
 
 <div>
