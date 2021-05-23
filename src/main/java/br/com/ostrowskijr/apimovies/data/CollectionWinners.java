@@ -35,14 +35,17 @@ public class CollectionWinners {
             String[] producersName = movie.getProducers().replace(" and ", ",").split(",");
             for (int i = 0; i < producersName.length; i++) {
                 String producer = producersName[i].trim();
+                // Verificar se o nome do produtor é válido
                 if (!producer.isEmpty()) {
                     // Verificar se o produtor já existe em Winners
                     Optional<Winner> optional = winners.stream().filter(winner -> winner.getProducer().equals(producer))
                             .findAny();
                     if (!optional.isPresent()) {
+                        // Listar os anos em que o produtor obteve prêmio
                         List<Integer> dates = filterMovies.stream().filter(m -> m.getProducers().contains(producer))
                                 .map(Movie::getYear).collect(Collectors.toList());
-                        if (dates.size() > 1) {                            
+                        if (dates.size() > 1) {
+                            // Guardar todos os prêmios do produtor                      
                             try {
                                 int firstYear = 0;
                                 int lastYear = 0;
