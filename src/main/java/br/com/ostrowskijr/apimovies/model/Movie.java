@@ -48,6 +48,7 @@ public class Movie {
         return winner;
     }
     
+    @Override
     public String toString(){
         return "{year : " + getYear() + " title: " + getTitle() + " studios: " + getStudios() + " producers: " + getProducers() + " winner: " + getWinner() + "}";
     }

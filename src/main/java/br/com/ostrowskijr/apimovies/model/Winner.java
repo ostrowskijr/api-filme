@@ -1,13 +1,13 @@
 package br.com.ostrowskijr.apimovies.model;
 
 public class Winner {
-    
+
     private String producer;
     private int interval;
     private int previousWin;
     private int followingWin;
 
-    public Winner(String producer, int interval, int previousWin, int followingWin){
+    public Winner(String producer, int interval, int previousWin, int followingWin) {
         this.producer = producer;
         this.interval = interval;
         this.previousWin = previousWin;
@@ -47,8 +47,9 @@ public class Winner {
     }
 
     @Override
-    public String toString() {        
-        return "produtcer : " + getProducer() + " interval : " + getInterval() + " previousWin : " + getPreviousWin() + " followingWin : " + getFollowingWin();
+    public String toString() {
+        return "produtcer : " + getProducer() + " interval : " + getInterval() + " previousWin : " + getPreviousWin()
+                + " followingWin : " + getFollowingWin();
     }
 
 }

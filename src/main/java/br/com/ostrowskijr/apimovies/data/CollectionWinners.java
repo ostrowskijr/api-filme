@@ -44,25 +44,25 @@ public class CollectionWinners {
                         // Listar os anos em que o produtor obteve prêmio
                         List<Integer> dates = filterMovies.stream().filter(m -> m.getProducers().contains(producer))
                                 .map(Movie::getYear).collect(Collectors.toList());
+                        dates.sort(Comparator.naturalOrder());
                         if (dates.size() > 1) {
-                            // Guardar todos os prêmios do produtor                      
+                            System.out.println("Dates Producers: " + dates.toString());
+                            // Guardar todos os prêmios do produtor
                             try {
                                 int firstYear = 0;
                                 int lastYear = 0;
                                 int interval = 0;
                                 for (int index = 0; index < dates.size(); index++) {
-                                    if (dates.size() >= index + 1) {
-                                        if (firstYear == 0) {
-                                            firstYear = dates.get(index);
-                                        } else {
-                                            firstYear = lastYear;
-                                        }
-                                        lastYear = dates.get(index);
-                                        // Calcular o Intervalo entre os prêmios
-                                        interval = lastYear - firstYear;
-                                        Winner winner = new Winner(producer, interval, firstYear, lastYear);
-                                        winners.add(winner);
+                                    if (firstYear == 0) {
+                                        firstYear = dates.get(index);
+                                    } else {
+                                        firstYear = lastYear;
                                     }
+                                    lastYear = dates.get(index);
+                                    // Calcular o Intervalo entre os prêmios
+                                    interval = lastYear - firstYear;
+                                    Winner winner = new Winner(producer, interval, firstYear, lastYear);
+                                    winners.add(winner);
                                 }
 
                             } catch (Exception e) {
